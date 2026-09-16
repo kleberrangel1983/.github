@@ -1,0 +1,18 @@
+name: Node.js e estático CI
+
+on:
+  pull_request:
+  push:
+    branches: [$default-branch]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: node-static-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    uses: kleberrangel1983/.github/.github/workflows/node-static-ci.yml@288d686ad7639c9586253979275358e3a7bbb4a9
