@@ -1,0 +1,18 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [$default-branch]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    uses: kleberrangel1983/.github/.github/workflows/nextjs-ci.yml@a3b048380f5b206e9bcdfbd5217ae02d7c2dde87

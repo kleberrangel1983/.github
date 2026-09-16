@@ -1,0 +1,7 @@
+{
+  "name": "Next.js CI com npm",
+  "description": "Lint e build de projetos Next.js com npm e Node.js 24, sem credenciais de producao.",
+  "iconName": "octicon check-circle",
+  "categories": ["JavaScript", "TypeScript"],
+  "filePatterns": ["^next\\.config\\.(js|mjs|ts)$"]
+}
