@@ -15,4 +15,4 @@ concurrency:
 
 jobs:
   quality:
-    uses: kleberrangel1983/.github/.github/workflows/node-static-ci.yml@288d686ad7639c9586253979275358e3a7bbb4a9
+    uses: kleberrangel1983/.github/.github/workflows/node-static-ci.yml@e787db620da12239042187aad34d1cdbf49ad3f4
