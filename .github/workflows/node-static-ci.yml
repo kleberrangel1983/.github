@@ -44,3 +44,4 @@ jobs:
           run_if_present lint
           run_if_present test
           run_if_present build
+          run_if_present vercel-build
