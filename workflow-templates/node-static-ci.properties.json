@@ -1,0 +1,7 @@
+{
+  "name": "Node.js e estático CI",
+  "description": "Qualidade para projetos Node.js, Vite ou HTML com package-lock.json, sem credenciais de produção.",
+  "iconName": "octicon terminal",
+  "categories": ["JavaScript", "TypeScript"],
+  "filePatterns": ["^package-lock\.json$", "^(vite|webpack|rollup)\.config\.(js|mjs|ts)$"]
+}

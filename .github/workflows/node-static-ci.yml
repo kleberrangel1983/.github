@@ -1,0 +1,46 @@
+name: Node e estaticos CI reutilizavel
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Qualidade Node/estatico
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Obter codigo
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30af803 # v6
+        with:
+          persist-credentials: false
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Instalar dependencias pelo lockfile
+        run: npm ci --no-audit --no-fund
+
+      - name: Executar scripts de qualidade disponíveis
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          run_if_present() {
+            local script="$1"
+            if node -e "process.exit(require('./package.json').scripts?.[process.argv[1]] ? 0 : 1)" "$script"; then
+              npm run "$script"
+            else
+              echo "Script $script não definido; etapa ignorada."
+            fi
+          }
+
+          run_if_present lint
+          run_if_present test
+          run_if_present build
